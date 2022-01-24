@@ -1,4 +1,5 @@
-export default function Sidebar({ state, setActiveChat }) {
+export default function Sidebar({ state, setActiveChat, activeChat }) {
+
 	return (
 		<div className='sidebar'>
 			<div className='search'>
@@ -14,7 +15,11 @@ export default function Sidebar({ state, setActiveChat }) {
 			</div>
 			<div className='userList'>
 				{state.map((user) => (
-					<div className='user' key={user.id}>
+					<div
+						className='user'
+						key={user.id}
+						onClick={() => setActiveChat(user.id - 1)}
+						style={activeChat === user.id - 1 ? { background: '#ECEDEF' } : null}>
 						<img className='user__avatar' src={user.icon} alt='Avatar' />
 						<div className='userInfo'>
 							<p className='userInfo__name'>{user.name}</p>

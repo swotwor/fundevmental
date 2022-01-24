@@ -75,11 +75,10 @@ body {
 .user {
 	display: flex;
 	position: relative;
-	// justify-content: center;
-	padding-left: 20px;
 	align-items: center;
 	height: 72px;
 	width: 299px;
+	padding: 0 20px;
 	cursor: pointer;
 	.user__avatar {
 		display: block;

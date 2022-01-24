@@ -1,17 +1,17 @@
 import React from 'react';
 
-export default function Chat({ state }) {
-	// console.log(state.name);
+export default function Chat({ userState, inputState, onChangeInput, sendMessage }) {
+
 	return (
 		<div className='chat'>
 			<div className='chat__inner'>
 				<div className='chat__user'>
 					<div className='chat__userHeader'>
-						<img className='chat__userAvatar' src='images/avatars/4.png' alt='avatar' />
+						<img className='chat__userAvatar' src={userState.icon} alt='avatar' />
 						<div className='chat__userInfo'>
 							<p className='chat__userName'>
 								<img src='images/icons/circle_check.png' alt='circle-chek' />
-								Владлена, 19
+								{userState.name}
 							</p>
 							<p className='chat__userFrendly'>
 								<img src='images/icons/user_heart.png' alt='user-heart' />
@@ -28,42 +28,25 @@ export default function Chat({ state }) {
 				</div>
 				<div className='chat__messages'>
 					<ul className='chat__message'>
-						<li className='chat__messageTextFrom'>
-							<span className='chat__messageTime'>15:54</span>
-							Кароч сегодня купила стекла
-						</li>
-						<li className='chat__messageTextFrom'>
-							<span className='chat__messageTime'>15:54</span>
-							Для окон само собой. Ну и понеслись проблемы как ты понимаешь
-						</li>
-						<li className='chat__messageTextTo'>
-							<span className='chat__messageTime'>15:54</span>
-							Хай. Что за проблемы?
-						</li>
-						<li className='chat__messageTextFrom'>
-							<span className='chat__messageTime'>15:54</span>
-							Они тупо не подходят
-						</li>
-						<li className='chat__messageTextFrom'>
-							<span className='chat__messageTime'>15:54</span>
-							Размер не тот!
-						</li>
-						<li className='chat__messageTextTo'>
-							<span className='chat__messageTime'>15:54</span>
-							Ну это ни в какие рамки
-						</li>
+						{userState.messages.map((user) => (
+							<li className={user.type === 'from' ? 'chat__messageTextFrom' : 'chat__messageTextTo'} key={user.time}>
+								<span className='chat__messageTime'>{new Date(user.time).toLocaleTimeString()}</span>
+								{user.msg}
+							</li>
+						))}
+						{/* <li className='chat__messageTextTo'> */}
 					</ul>
 				</div>
 			</div>
 			<div className='chat__writeMessage'>
-				<input type='text' placeholder='Твое сообщение... (Enter чтобы отправить)' />
+				<input type='text' placeholder='Твое сообщение... (Enter чтобы отправить)' value={inputState} onChange={onChangeInput}/>
 				<div className='chat__icons'>
 					<div className='chat__icon'>
 						<img src='images/icons/happy.png' alt='happy' />
 						<img src='images/icons/image.png' alt='gallery' />
 						<img src='images/icons/Gift.png' alt='gift' />
 					</div>
-					<img src='images/icons/Send.png' alt='send' />
+					<img src='images/icons/Send.png' alt='send' onClick={sendMessage}/>
 				</div>
 			</div>
 		</div>
