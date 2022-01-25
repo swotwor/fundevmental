@@ -1,5 +1,4 @@
 export default function Sidebar({ state, setActiveChat, activeChat }) {
-
 	return (
 		<div className='sidebar'>
 			<div className='search'>

@@ -1,7 +1,4 @@
-import React from 'react';
-
 export default function Chat({ userState, inputState, onChangeInput, sendMessage }) {
-
 	return (
 		<div className='chat'>
 			<div className='chat__inner'>
@@ -34,19 +31,22 @@ export default function Chat({ userState, inputState, onChangeInput, sendMessage
 								{user.msg}
 							</li>
 						))}
-						{/* <li className='chat__messageTextTo'> */}
 					</ul>
 				</div>
 			</div>
 			<div className='chat__writeMessage'>
-				<input type='text' placeholder='Твое сообщение... (Enter чтобы отправить)' value={inputState} onChange={onChangeInput}/>
+				<input
+					value={inputState}
+					onChange={onChangeInput}
+					type='text'
+					placeholder='Твое сообщение... (Enter чтобы отправить)' />
 				<div className='chat__icons'>
 					<div className='chat__icon'>
 						<img src='images/icons/happy.png' alt='happy' />
 						<img src='images/icons/image.png' alt='gallery' />
 						<img src='images/icons/Gift.png' alt='gift' />
 					</div>
-					<img src='images/icons/Send.png' alt='send' onClick={sendMessage}/>
+					<img onClick={sendMessage} src='images/icons/Send.png' alt='send' />
 				</div>
 			</div>
 		</div>
